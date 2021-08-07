@@ -1,15 +1,53 @@
 function getWeather(city) {
-
   var urlForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=ec8111779186bc038867060a7d9bd517`
   fetch(urlForecast)
   .then(response => response.json())
   .then(data => {
    console.log(data);
    populateWeatherData(data);
+   getCurrentUVIndex(data.city.coord.lat, data.city.coord.lon);
   })
   .catch((error) => {
     console.log("Error");
     alert("Sorry, we can't find that city.")
+  })
+}
+
+function getCurrentUVIndex(lat, lon) {
+  var urlWeather = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly,daily,alerts&appid=ec8111779186bc038867060a7d9bd517`
+  fetch(urlWeather)
+  .then(response => response.json())
+  .then(data => {
+    console.log(data);
+    var uvi = data.current.uvi;
+    if (uvi < 3) {
+      //green
+      var uviTag= `UV Index: <span class="current-uv tag is-success">${uvi}</span>`
+      console.log("green" + uvi);
+    } else if (uvi < 6) {
+      //yellow
+      var uviTag= `UV Index: <span class="current-uv tag is-warning">${uvi}</span>`
+      console.log("yellow" + uvi);
+    } else if (uvi < 8) {
+      //orange
+      var uviTag= `UV Index: <span class="current-uv tag is-orange">${uvi}</span>`
+      console.log("orange" + uvi);
+
+    } else if (uvi < 11) {
+      //red
+      var uviTag= `UV Index: <span class="current-uv tag is-danger">${uvi}</span>`
+      console.log("red" + uvi);
+
+    } else {
+      //purple
+      var uviTag= `UV Index: <span class="current-uv tag is-link">${uvi}</span>`
+      console.log("purple" + uvi);
+
+    }
+    $(".uv-current").html(uviTag);
+  })
+  .catch((error) => {
+    console.log("UV Indexing Error");
   })
 }
 
