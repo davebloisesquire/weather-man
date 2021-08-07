@@ -23,68 +23,46 @@
     </div>
   </section>
   <!-- MAIN CONTAINER -->
-<section class="container block">
-  <div class="columns">
-    <!-- SIDE POD FOR SEARCH -->
-    <div class="column is-3 block">
-      <div class="box">
-        <div class="field">
-          <label class="label">Search for a City:</label>
-          <div class="control">
-            <input class="input" type="text" id="search-value" placeholder="City search...">
+  <section class="container block">
+    <div class="columns">
+      <!-- SIDE POD FOR SEARCH -->
+      <div class="column is-3 block">
+        <div class="box">
+          <div class="field">
+            <label class="label">Search for a City:</label>
+            <div class="control">
+              <input class="input" type="text" id="search-value" placeholder="City search..." list="search-history">
+              <datalist id="search-history">
+                
+              </datalist>
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <button id="search-button" class="button is-link">Search</button>
+            </div>
           </div>
         </div>
-        <div class="field">
-          <div class="control">
-            <button id="search-button" class="button is-link">Search</button>
-          </div>
-        </div>
       </div>
-    </div>
-    <!-- MAIN CONTENTN DISPLAY AREA -->
-    <div class="column is-9">
-    <!-- TODAY'S WEATHER BOX -->
-    <div class="box content">
-      <h1>City (Date)</h1>
-      <p>Temp:</p>
-      <p>Wind:</p>
-      <p>Humidity:</p>
-      <p>UV Index:</p>
-    </div>
-    <!-- FIVE DAY FORECAST -->
-    <h1 class="title">5 Day Forecast</h1>
-    <div class="box columns is-2">
-      <div class="column is-one-fifth">
-        <div class="box notification is-primary">
-          <p class="title">Mon</p>
+      <!-- MAIN CONTENTN DISPLAY AREA -->
+      <div class="column is-9">
+        <!-- TODAY'S WEATHER BOX -->
+        <div class="box content">
+          <h1><span class="city-name"></span> (<span class="current-date"></span>)</h1><span class="current-icon"></span>
+          <p>Temp: <span class="current-temp"></span>° F</p>
+          <p>Wind: <span class="current-wind"></span></p>
+          <p>Humidity: <span class="current-humidity"></span></p>
+          <p>Description: <span class="current-description"></span></p>
         </div>
-      </div>
-      <div class="column is-one-fifth">
-        <div class="box notification is-primary">
-          <p class="title">Tue</p>
-        </div>
-      </div>
-      <div class="column is-one-fifth">
-        <div class="box notification is-primary">
-          <p class="title">Wed</p>
-        </div>
-      </div>
-      <div class="column is-one-fifth">
-        <div class="box notification is-primary">
-          <p class="title">Thu</p>
-        </div>
-      </div>
-      <div class="column is-one-fifth">
-        <div class="box notification is-primary">
-          <p class="title">Fri</p>
-        </div>
-      </div>
+        <!-- FIVE DAY FORECAST -->
+        <h1 class="title">5 Day Forecast</h1>
+        <div id="forecast-display" class="box columns is-2">
 
+        </div>
+      </div>
     </div>
-    </div>
-  </div>
-</section>
-<!-- FOOTER -->
+  </section>
+  <!-- FOOTER -->
   <footer class="footer">
     <div class="content has-text-centered">
       <p>
