@@ -1,3 +1,4 @@
+// API Pull to grab the weather data
 function getWeather(city) {
   var urlForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=ec8111779186bc038867060a7d9bd517`
   fetch(urlForecast)
@@ -13,6 +14,7 @@ function getWeather(city) {
   })
 }
 
+// Getting the UV index fro the lon and lat
 function getCurrentUVIndex(lat, lon) {
   var urlWeather = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly,daily,alerts&appid=ec8111779186bc038867060a7d9bd517`
   fetch(urlWeather)
@@ -51,6 +53,7 @@ function getCurrentUVIndex(lat, lon) {
   })
 }
 
+// This converts the Unix Date code to a human readable Date
 function dateConverter(unixTimeStamp) {
   const dateObject = new Date(unixTimeStamp * 1000);
   const month = dateObject.toLocaleString("en-US", {month: "numeric"})
@@ -60,6 +63,7 @@ function dateConverter(unixTimeStamp) {
   return formattedDate;
 }
 
+// This function takes the weather object data and adds it to the DOM
 function populateWeatherData(data) {
   var cityName = data.city.name;
   var currentDate = dateConverter(data.list[0].dt);
@@ -99,6 +103,7 @@ function populateWeatherData(data) {
   $("#forecast-display").html(forecastDisplay);
 }
 
+// Saves your history in local storage
 function searchHistory(searchItem) {
     searchItem = searchItem.toLowerCase();
     var history = localStorage.getItem("searchHistoryOptions")
@@ -121,6 +126,7 @@ function searchHistory(searchItem) {
     console.log(historyList);
 }
 
+// Initiates the get weather function
 document.getElementById("search-button").addEventListener("click", function() {
   var city =  $('#search-value').val();
   searchHistory(city);
