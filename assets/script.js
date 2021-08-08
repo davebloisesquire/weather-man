@@ -101,19 +101,19 @@ function populateWeatherData(data) {
 
 function searchHistory(searchItem) {
     searchItem = searchItem.toLowerCase();
-    var history = localStorage.getItem("searchHistory")
+    var history = localStorage.getItem("searchHistoryOptions")
         //Check if there's existing history
     if (history === null) {
         //If there's no exisiting history, make a new blank entry
-        localStorage.setItem("searchHistory", "")
+        localStorage.setItem("searchHistoryOptions", "")
     }
     if (!history.includes(searchItem)) {
-        history = "<option>" + searchItem + "</option>" + history;
+        history = "<button class='button is-primary box' onclick=\"getWeather('" + searchItem + "')\">" + searchItem + "</button>" + history;
     }
     //Save it to local storage
-    localStorage.setItem("searchHistory", history)
+    localStorage.setItem("searchHistoryOptions", history)
         //pull newly updated version from local storage
-    var historyList = localStorage.getItem("searchHistory")
+    var historyList = localStorage.getItem("searchHistoryOptions")
         //Clear out whatever's there in history to begin with
     $("#search-history").empty();
     //Add the new search history list
@@ -126,3 +126,27 @@ document.getElementById("search-button").addEventListener("click", function() {
   searchHistory(city);
   getWeather(city);
 } )
+
+
+
+// function searchHistory(searchItem) {
+//     searchItem = searchItem.toLowerCase();
+//     var history = localStorage.getItem("searchHistory")
+//         //Check if there's existing history
+//     if (history === null) {
+//         //If there's no exisiting history, make a new blank entry
+//         localStorage.setItem("searchHistory", "")
+//     }
+//     if (!history.includes(searchItem)) {
+//         history = "<option>" + searchItem + "</option>" + history;
+//     }
+//     //Save it to local storage
+//     localStorage.setItem("searchHistory", history)
+//         //pull newly updated version from local storage
+//     var historyList = localStorage.getItem("searchHistory")
+//         //Clear out whatever's there in history to begin with
+//     $("#search-history").empty();
+//     //Add the new search history list
+//     $("#search-history").append(historyList)
+//     console.log(historyList);
+// }
