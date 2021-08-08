@@ -107,7 +107,7 @@ function searchHistory(searchItem) {
         //If there's no exisiting history, make a new blank entry
         localStorage.setItem("searchHistoryOptions", "")
     }
-    if (!history.includes(searchItem)) {
+    if (!history.includes(searchItem) && searchItem !== "") {
         history = "<button class='button is-primary box' onclick=\"getWeather('" + searchItem + "')\">" + searchItem + "</button>" + history;
     }
     //Save it to local storage
@@ -127,7 +127,7 @@ document.getElementById("search-button").addEventListener("click", function() {
   getWeather(city);
 } )
 
-
+searchHistory("");
 
 // function searchHistory(searchItem) {
 //     searchItem = searchItem.toLowerCase();
