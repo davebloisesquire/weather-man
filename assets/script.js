@@ -16,7 +16,7 @@ function getWeather(city) {
 
 // Getting the UV index fro the lon and lat
 function getCurrentUVIndex(lat, lon) {
-  var urlWeather = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly,daily,alerts&appid=ec8111779186bc038867060a7d9bd517`
+  var urlWeather = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly,alerts&appid=ec8111779186bc038867060a7d9bd517`
   fetch(urlWeather)
   .then(response => response.json())
   .then(data => {
